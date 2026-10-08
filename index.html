@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minimum Cost Network Design</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Minimum Cost Network Design</h1>
+            <p>Smart College Campus Network Optimization</p>
+        </div>
+
+        <div class="algorithm">
+            <span>Algorithm</span>
+            <strong>Kruskal's MST</strong>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- Statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <span class="icon">🏫</span>
+                <div>
+                    <p>Buildings</p>
+                    <h2 id="buildingCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span class="icon">🔗</span>
+                <div>
+                    <p>Connections</p>
+                    <h2 id="connectionCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span class="icon">🌐</span>
+                <div>
+                    <p>Selected Links</p>
+                    <h2 id="selectedCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card cost-card">
+                <span class="icon">💰</span>
+                <div>
+                    <p>Minimum Cost</p>
+                    <h2 id="totalCost">₹0</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="dashboard">
+
+            <!-- LEFT PANEL -->
+            <aside class="control-panel">
+
+                <h2>Network Configuration</h2>
+
+                <!-- Add Building -->
+                <div class="form-section">
+
+                    <h3>🏫 Add Building</h3>
+
+                    <input
+                        type="text"
+                        id="buildingInput"
+                        placeholder="Example: CSE Block"
+                    >
+
+                    <button class="primary-btn" onclick="addBuilding()">
+                        + Add Building
+                    </button>
+
+                </div>
+
+
+                <!-- Add Connection -->
+                <div class="form-section">
+
+                    <h3>🔗 Add Connection</h3>
+
+                    <label>From Building</label>
+
+                    <select id="fromBuilding">
+                        <option value="">Select Building</option>
+                    </select>
+
+
+                    <label>To Building</label>
+
+                    <select id="toBuilding">
+                        <option value="">Select Building</option>
+                    </select>
+
+
+                    <label>Installation Cost (₹)</label>
+
+                    <input
+                        type="number"
+                        id="costInput"
+                        placeholder="Example: 500"
+                        min="1"
+                    >
+
+
+                    <button class="primary-btn" onclick="addConnection()">
+                        + Add Connection
+                    </button>
+
+                </div>
+
+
+                <!-- Actions -->
+                <div class="form-section">
+
+                    <h3>⚙️ Actions</h3>
+
+                    <button
+                        class="calculate-btn"
+                        onclick="calculateMST()"
+                    >
+                        Calculate Minimum Network
+                    </button>
+
+                    <button
+                        class="sample-btn"
+                        onclick="loadSampleData()"
+                    >
+                        Load Sample College Data
+                    </button>
+
+                    <button
+                        class="reset-btn"
+                        onclick="resetProject()"
+                    >
+                        Reset Project
+                    </button>
+
+                </div>
+
+
+                <!-- Building List -->
+                <div class="list-section">
+
+                    <h3>🏢 Buildings</h3>
+
+                    <div id="buildingList" class="building-list">
+                        <p class="empty">No buildings added</p>
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- RIGHT PANEL -->
+            <section class="visual-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Campus Network</h2>
+                        <p>Network connection visualization</p>
+                    </div>
+
+                    <div class="legend">
+
+                        <span>
+                            <i class="normal-line"></i>
+                            Available
+                        </span>
+
+                        <span>
+                            <i class="mst-line"></i>
+                            Selected
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="network-container">
+
+                    <svg
+                        id="networkSvg"
+                        viewBox="0 0 900 500"
+                        preserveAspectRatio="xMidYMid meet"
+                    >
+                    </svg>
+
+                    <div
+                        id="emptyNetwork"
+                        class="empty-network"
+                    >
+                        <div>🌐</div>
+
+                        <h3>No Network Available</h3>
+
+                        <p>
+                            Add buildings and connections to visualize
+                            your campus network.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Result -->
+                <div class="result-panel">
+
+                    <div class="result-header">
+
+                        <div>
+                            <h2>Minimum Network Result</h2>
+                            <p>Selected connections using Kruskal's Algorithm</p>
+                        </div>
+
+                        <div class="result-cost">
+                            <span>Total Cost</span>
+                            <strong id="resultCost">₹0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="resultTable"
+                        class="table-container"
+                    >
+
+                        <div class="no-result">
+                            Calculate the minimum network to see results.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Minimum Cost Network Design |
+            College Mini Project |
+            Graph + Minimum Spanning Tree
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
